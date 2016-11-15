@@ -1,0 +1,57 @@
+.row {
+   margin-right: -15px;
+   margin-left: -15px;
+}
+.form-group{
+  margin-bottom: 15px;
+}
+.form-control {
+
+   width: 130% ;
+   display: block;
+   padding: 6px 12px;
+   font-size: 14px;
+   line-height: 1.42857143;
+   color: #555;
+   background-color: #fff;
+   background-image: none;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+textarea {
+   width: 130% ;
+   height: 150px;
+   padding: 12px 20px;
+   box-sizing: border-box;
+   border: 2px solid #ccc;
+   border-radius: 4px;
+   background-color: #f8f8f8;
+   resize: none;
+}
+.post{
+  font-size: 100%;
+}
+.post-btn{
+
+margin: 0.2em;
+padding: 0.45em 2em;
+background: #1baede;
+color: #fff;
+font-weight: 700;
+border-radius: 2px
+
+}
+
+.poster {
+    margin-top: -200px;
+    margin-bottom: -10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 50%;
+    overflow: auto;
+    font-style: italic;
+    font-size: 80%;
+}
