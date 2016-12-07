@@ -1,52 +1,42 @@
 <?php
 session_start();
 
-?>
-<?php
-$link = mysqli_connect("localhost", "root", "", "lab10") or die("Connect Error " . mysqli_error($link));
+	// Include ezSQL core
+	include_once "ez_sql_core.php";
+
+	// Include ezSQL database specific component
+	include_once "ez_sql_mysqli.php";
+	
+	
 	$username = htmlspecialchars($_POST['user']);
 	$fname = htmlspecialchars($_POST['fname']);
 	$lname = htmlspecialchars($_POST['lname']);
 	$email = htmlspecialchars($_POST['email']);
 	$password = htmlspecialchars($_POST['pass']);
 	$isNew = $_POST["new"];
-
-
-	$query = "SELECT password, id FROM user WHERE username = ?";
-  $stmt=mysqli_prepare($link, $query) or die("Prepare:".mysql_error());
-	 mysqli_stmt_bind_param($stmt, "s", $username) or die("bind param");
-	 mysqli_stmt_execute($stmt) or die("execute");
-	 mysqli_stmt_store_result($stmt) or die (mysqli_stmt_error($stmt));
-
-//login attempt------------
+	$db = new ezSQL_mysqli('zhang','some_pass','bookstore','localhost');
+//login returnning user attempt------------
 if($isNew == "0"){
-
-	 if(mysqli_stmt_num_rows($stmt) == 0){
-		          mysqli_stmt_close ($stmt);
-	            echo "fail";
-	          }
-	  else{
-		          mysqli_stmt_bind_result($stmt, $pass,$id) or die (mysqli_stmt_error($stmt));
-
-					  	mysqli_stmt_fetch($stmt) or die(mysqli_stmt_error($stmt));
-								$permissions_id=$id;
-
-
-	           if(password_verify($password, $pass)){
-							 	 mysqli_stmt_close ($stmt);
-							   $_SESSION["user"] = $username;
-							   setcookie('userid', $username);
-								 mysqli_stmt_close ($stmt1);
-								 echo "success";
-              }
-	          	else{
-			        echo "fail";
-	          	}
-        }
+	
+	$user = $db->get_row("SELECT password, id FROM user WHERE username = '$username'");
+	if(isset($user->id)){
+		if ($password == $user->password ){
+			setcookie('userid', $username);
+			$_SESSION["user"] = $username;
+			$_SESSION["id"] = $user->id;
+			echo "success login 3";
+		}
+		else{
+			echo "password fail 2";
+		}
+	}
+	else{
+		echo "no that user 1";
+	}
+	
 }
 
-
-      	//sign in attempt
+//sign in attempt
 else{
 
 //   +------------+--------------+------+-----+---------+----------------+
@@ -59,22 +49,16 @@ else{
 // | name_last  | varchar(45)  | YES  |     | NULL    |                |
 // | password   | varchar(256) | YES  |     | NULL    |                |
 
-
-		  if(mysqli_stmt_num_rows($stmt) == 1 ){
-			 mysqli_stmt_close ($stmt);
-			 echo "existed";
-		  }
-		  else{    //sign in!
-			mysqli_stmt_close ($stmt);
-			$query1 = "INSERT INTO user (username, email, name_first, name_last, password) VALUES (?,?,?,?,?)";
-			$stmt=mysqli_prepare($link, $query1) or die("Prepare:".mysql_error());
-			 mysqli_stmt_bind_param($stmt, "sssss", $username,$email,$fname,$lname,password_hash($password, PASSWORD_DEFAULT)) or die("bind param");
-			if(mysqli_stmt_execute($stmt)) {
-  			mysqli_stmt_close ($stmt);
-				echo "signin";
-
-			}
-	  	}
+$user = $db->get_row("SELECT password, id FROM user WHERE username = '$username'");
+	if(isset($user->id)){
+		 echo "the user already existed 4";
 	}
-  mysqli_free_result($result);
+	else{
+		//sign in!
+		$db->query("INSERT INTO user (username, email, name_first, name_last, password) VALUES ('$username','$email','$fname','$lname','$password')");
+		 echo "signin success 5";		
+	}
+}
+	
+ 
 ?>

@@ -1,31 +1,38 @@
 <?php
 session_start();
 
-?>
-<?php
-// $.post("post.php", {"title": $("#title").val(), "poster": $("#poster").val(),
-// "datepicker": $("#datepicker").val(), "comment": $("#comment").val(), "contact": $("#contact").val(),},
+// 	"bookid": $("#bookid").val(), 
+//		 	"poster": $("#poster").val(), 
+//		 	"datepicker": $("#datepicker").val()
 
+	// Include ezSQL core
+	include_once "ez_sql_core.php";
 
-$link = mysqli_connect("localhost", "root", "", "lab10") or die("Connect Error " . mysqli_error($link));
-$title = htmlspecialchars($_POST['title']);
-$poster = htmlspecialchars($_POST['poster']);
+	// Include ezSQL database specific component
+	include_once "ez_sql_mysqli.php";
+$rentdb = new ezSQL_mysqli('zhang','some_pass','bookstore','localhost');
+	
+$bookid = intval(htmlspecialchars($_POST['bookid']));
+$userid = intval(htmlspecialchars($_POST['userid']));
 $datepicker = htmlspecialchars($_POST['datepicker']);
-$comment = htmlspecialchars($_POST['comment']);
-$contact = htmlspecialchars($_POST['contact']);
+/*
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| user_id | int(11)     | NO   | PRI | NULL    |       |
+| book_id | int(11)     | NO   | PRI | NULL    |       |
+| date    | varchar(32) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
 
-	$query = "INSERT INTO favor (username, data, content,contact,title) VALUES (?,?,?,?,?)";
-  $stmt=mysqli_prepare($link, $query) or die("Prepare:".mysql_error());
-  mysqli_stmt_bind_param($stmt, "sssss", $poster, $datepicker,$comment,$contact,$title) or die("bind param");
-		if(mysqli_stmt_execute($stmt)) {
-  			mysqli_stmt_close ($stmt);
-				echo "success";
-			}
-    else{
-      mysqli_stmt_close ($stmt);
-      echo "fail";
-    }
+*/
+if($rentdb->query("INSERT INTO rent1 (user_id, book_id, date) VALUES ($userid,$bookid,'$datepicker')")){
+		echo "success1";
+	
+}
+else{
+   
+      echo "fail2";
+}
 
 
-  mysqli_free_result($result);
 ?>

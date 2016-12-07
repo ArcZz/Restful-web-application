@@ -21,17 +21,12 @@ if ($username) {
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"><!-- Optional theme -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script><!-- Latest compiled and minified JavaScript -->
 		<script src="js/modernizr.custom.js"></script>
-	   <link rel="stylesheet" type="text/css" href="css/demo1.css" />
-		 <script src="js/login.js"></script>
+	   	<link rel="stylesheet" type="text/css" href="css/demo1.css" />
+		<script src="js/login.js"></script>
     <style>
  body{
    background-color: #ECDAB0;
-	 /*background:url(images/papper1.jpg);
-	  background-size:100% 100%;
-	 background-position:left;
-	 	background-attachment:fixed;
-
-	 background-repeat:no-repeat;*/
+	 
  }
  .codrops-top{
    background:#585757;
@@ -40,7 +35,7 @@ if ($username) {
  header{
   margin-top: 60px;
   }
-	.hidden{
+.hidden{
 
   display: none;
 }
@@ -57,20 +52,23 @@ height: 10px;
     </style>
 	</head>
 	<body>
-		<nav class="navbar navbar-inverse top" style="height = 100px">
+			<nav class="navbar navbar-inverse top" style="height = 100px">
 				 <div class="container-fluid">
 			 <form class="navbar-right">
 				 <ul class="nav navbar-nav" id="navbar_top">
-				 <li><a href="#">Zhang</a></li>
-				 <li><a href="#">contact information</a></li>
+				 <li><a href="#">CS4830 Project</a></li>
+				 <li><a href="#">ZhangZ</a></li>
+				 <li><a href="#">Contact</a></li>
 				 </ul>
 			 </form>
 		 </div>
 	 </nav>
 
-		<div class="container">
-			<header>
-				<h1>Do Me A Favor <span>Login & signin</span></h1>
+		<div class="container" style="width: 90%" >
+			
+	
+			<header style="background-color: #ECDAB0;">
+				<h1>Rent book online <span>Login & sign_in</span></h1>
 			</header>
 			<div class="main clearfix">
 				<div class="bb-custom-wrapper">
@@ -126,20 +124,18 @@ height: 10px;
             </form>
            </div>
   </div>
-
+					<nav style="margin-bottom: 0.2em;">
+						<a id="bb-nav-first" href="#" class="bb-custom-icon bb-custom-icon-first">First page</a>
+						<a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left">Previous</a>
+						<a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right">Next</a>
+						<a id="bb-nav-last" href="#" class="bb-custom-icon bb-custom-icon-last">Last page</a>
+					</nav>
 					<div id="bb-bookblock" class="bb-bookblock">
 
 						<div class="bb-item">
 							<img src="images/demo1/7.jpg" alt="image01"/>
 						</div>
-            <div class="bb-item">
-               <object data="images/demo1/movie.mp4" width="400" height="300">
-                <embed src="images/demo1/movie.mp4" width="400" height="300" />
-               </object>
-            </div>
-						<div class="bb-item">
-							<img src="images/demo1/8.jpg" alt="image02"/>
-						</div>
+						
 						<div class="bb-item">
 						  <img src="images/demo1/1.jpg" alt="image03"/>
 						</div>
@@ -149,19 +145,16 @@ height: 10px;
 						<div class="bb-item">
 						  <img src="images/demo1/3.jpg" alt="image05"/>
 						</div>
-            <div class="bb-item">
-              <img src="images/demo1/5.jpg" alt="image06"/>
-            </div>
+						<div class="bb-item">
+							<img src="images/demo1/5.jpg" alt="image06"/>
+						</div>
 					</div>
-					<nav>
-						<a id="bb-nav-first" href="#" class="bb-custom-icon bb-custom-icon-first">First page</a>
-						<a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left">Previous</a>
-						<a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right">Next</a>
-						<a id="bb-nav-last" href="#" class="bb-custom-icon bb-custom-icon-last">Last page</a>
-					</nav>
+				
 				</div>
 			</div>
 		</div>
+		
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="js/jquerypp.custom.js"></script>
 		<script src="js/jquery.bookblock.min.js"></script>
